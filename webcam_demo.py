@@ -1,5 +1,8 @@
 import tensorflow as tf
+import sys
+sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages') # in order to import cv2 under python3
 import cv2
+sys.path.append('/opt/ros/kinetic/lib/python2.7/dist-packages') # append back in order to import rospyimport time
 import time
 import argparse
 
@@ -48,7 +51,7 @@ def main():
                 min_pose_score=0.15)
 
             keypoint_coords *= output_scale
-
+            print(keypoint_coords)
             # TODO this isn't particularly fast, use GL for drawing and display someday...
             overlay_image = posenet.draw_skel_and_kp(
                 display_image, pose_scores, keypoint_scores, keypoint_coords,
